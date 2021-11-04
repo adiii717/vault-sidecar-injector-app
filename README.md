@@ -29,4 +29,5 @@ export secret_id="4edc177f-7a84-d354-0d1b-677206f861f7"
 # run demo application
 
 ./vault.sh
-![plot](../images/pod-running-with-vault.png)
+
+![running pods](https://github.com/Adiii717/vault-sidecar-injector-demo/blob/main/images/pod-running-with-vault.png)
