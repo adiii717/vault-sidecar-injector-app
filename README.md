@@ -18,16 +18,25 @@ minikube start
 
 
 # configure vault
+configure vault and enable auth,approle etc
+```shell
 ./vault-config.sh
 
-Copy the role-id and secret id and update the `vault.sh` script
 ```
+Copy the role-id and secret id and update the `vault.sh` script
+```shell
 export role_id="2221ade4-783a-46d7-8d43-a2db3be07af1"
 export secret_id="4edc177f-7a84-d354-0d1b-677206f861f7"
 ```
 
+
+
 # run demo application
 
+```shell
 ./vault.sh
+```
 
 ![running pods](https://github.com/Adiii717/vault-sidecar-injector-demo/blob/main/images/pod-running-with-vault.png)
+
+![configure vault auth and approle](https://github.com/Adiii717/vault-sidecar-injector-demo/blob/main/images/pod-running-with-vault.png)
