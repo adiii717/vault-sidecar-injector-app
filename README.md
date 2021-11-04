@@ -10,3 +10,12 @@ vault server -dev -dev-listen-address your_local_ip:8200
 
 # start minikube
 minikube start
+
+
+
+# configure vault
+./vault-config.sh
+
+# run demo application
+
+./vault.sh
