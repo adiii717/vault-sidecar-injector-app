@@ -50,6 +50,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          # overide command for showing env
           command: ["sh", "-c", "source /vault/secrets/env.sh && printenv &&  /vault/secrets/env.sh && cat  /vault/secrets/env.sh && tail -f /dev/null"]
           ports:
             - name: http
