@@ -7,6 +7,7 @@ kubectl apply -f k8-role.yaml
 export VAULT_ADDR="http://192.168.1.2:8200"
 vault login s.Gn96PxA82LElXiYb5CfHQCDG
 # vault login root
+helm repo add hashicorp https://helm.releases.hashicorp.com
 helm upgrade --install vault hashicorp/vault --set "injector.externalVaultAddr=http://192.168.1.2:8200"
 
 VAULT_HELM_SECRET_NAME=$(kubectl get secrets --output=json | jq -r '.items[].metadata | select(.name|startswith("vault-token-")).name')
