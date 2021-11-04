@@ -18,11 +18,22 @@ spec:
         vault.hashicorp.com/log-level: "debug"
         vault.hashicorp.com/role: "{{ .Release.Namespace }}-{{ .Release.Name }}"
         vault.hashicorp.com/agent-init-first : "true"
+        vault.hashicorp.com/agent-inject-command-env.sh: "chmod +x /vault/secrets/env.sh"
+        vault.hashicorp.com/agent-inject-secret-env.sh: "kv/{{ .Release.Namespace }}/{{ .Values.environment }}/{{ .Release.Name }}"
+        vault.hashicorp.com/agent-inject-template-env.sh: |
+            {{printf "{{ with secret \"kv/"}}{{ .Release.Namespace }}/{{ .Values.environment }}/{{ .Release.Name }}" {{ ` }}
+            #!/bin/bash
+            {{ range $k, $v := .Data.data }}
+            export {{ $k }}="{{ $v }}"
+            {{ end }}
+            {{ end }} `}}
         #### not required for local vault
-        # vault.hashicorp.com/namespace : "admin"
         vault.hashicorp.com/log-level : "debug"
         vault.hashicorp.com/auth-path: "auth/kubernetes/"
-        ###
+        ################################ 
+        #not required for local vault
+        #vault.hashicorp.com/namespace : "admin"
+        ################################
       labels:
         {{- include "helm-chart.selectorLabels" . | nindent 8 }}
     spec:
@@ -37,20 +48,13 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag}}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["sh", "-c", "source /vault/secrets/env.sh && printenv &&  /vault/secrets/env.sh && cat  /vault/secrets/env.sh && tail -f /dev/null"]
           ports:
             - name: http
               containerPort: 80
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

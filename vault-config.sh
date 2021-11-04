@@ -3,8 +3,9 @@
 
 kubectl apply -f k8-role.yaml
 
-export VAULT_ADDR="http://192.168.1.2:8200"
 
+export VAULT_ADDR="http://192.168.1.2:8200"
+vault login s.Gn96PxA82LElXiYb5CfHQCDG
 # vault login root
 helm upgrade --install vault hashicorp/vault --set "injector.externalVaultAddr=http://192.168.1.2:8200"
 
