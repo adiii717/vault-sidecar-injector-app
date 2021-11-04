@@ -12,8 +12,9 @@ vault server -dev -dev-listen-address your_local_ip:8200
 ```
 
 # start minikube
+```
 minikube start
-
+```
 
 
 # configure vault
@@ -28,3 +29,4 @@ export secret_id="4edc177f-7a84-d354-0d1b-677206f861f7"
 # run demo application
 
 ./vault.sh
+![plot](../images/pod-running-with-vault.png)
