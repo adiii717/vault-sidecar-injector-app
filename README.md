@@ -1,4 +1,4 @@
-# vaul-sidecar-injector-demo
+# vault-sidecar-injector-demo
 vault up and running with Kubernetes 
 
 ## Dependency
