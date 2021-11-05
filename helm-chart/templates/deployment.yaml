@@ -27,13 +27,14 @@ spec:
             export {{ $k }}="{{ $v }}"
             {{ end }}
             {{ end }} `}}
-        #### not required for local vault
         vault.hashicorp.com/log-level : "debug"
         vault.hashicorp.com/auth-path: "auth/kubernetes/"
         ################################ 
         #not required for local vault
-        #vault.hashicorp.com/namespace : "admin"
         ################################
+        {{- if not .Values.vault.vault-enterprise.enabled }}
+        vault.hashicorp.com/namespace : "admin"
+        {{- end }}
       labels:
         {{- include "helm-chart.selectorLabels" . | nindent 8 }}
     spec:
