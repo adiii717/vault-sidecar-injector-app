@@ -1,5 +1,8 @@
-# vault-sidecar-injector-demo
-vault up and running with Kubernetes 
+# vault-sidecar-injector-app
+vault up and running with Kubernetes
+
+- using local vault server
+- using vault enterprise
 
 ## Dependency
 - minikube
