@@ -1,8 +1,8 @@
 RELEASE_NAME=demoapp1
 NAMESPACE=default
 ENVIRONMENT=develop
-export role_id="568025ef-73b2-c146-da75-26619e5a5e4a"
-export secret_id="17c3c2bf-0c34-7d68-6802-6f90e71ca6d3"
+export role_id="ba601346-1ae2-c557-84d1-9fdb7846b08a"
+export secret_id="ddb26504-219a-93bc-6dec-d37cb62d7ed6"
 export VAULT_ADDR="http://192.168.1.2:8200"
 export VAULT_TOKEN=$(vault write -field="token"  auth/approle/login role_id="${role_id}" secret_id="${secret_id}")
 echo $VAULT_TOKEN

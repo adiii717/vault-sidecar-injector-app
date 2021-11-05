@@ -40,4 +40,4 @@ vault write -f  auth/approle/role/admin/secret-id
 
 
 #Enable KV
-vault secrets enable -path kv kv
+vault secrets enable -version=2 kv
