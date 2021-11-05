@@ -32,7 +32,7 @@ spec:
         ################################ 
         #not required for local vault
         ################################
-        {{- if not .Values.vault.vault-enterprise.enabled }}
+        {{- if .Values.vault.enterprise.enabled }}
         vault.hashicorp.com/namespace : "admin"
         {{- end }}
       labels:
